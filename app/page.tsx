@@ -140,10 +140,14 @@ export default function Page() {
                     {[
                       "JavaScript",
                       "TypeScript",
+                      "Tailwind CSS",
+                      "HTML",
                       "React",
                       "Next.js",
                       "Node.js",
                       "PostgreSQL",
+                      "Docker",
+                      "Prisma",
                     ].map((tag) => (
                       <span
                         key={tag}
