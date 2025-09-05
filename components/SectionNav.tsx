@@ -1,3 +1,4 @@
+// components/SectionNav.tsx
 "use client";
 import { useEffect, useState } from "react";
 
@@ -34,19 +35,20 @@ export default function SectionNav() {
   }, []);
 
   return (
-    <nav className="sticky top-0 z-40 border-b border-slate-200/60 bg-white/70 backdrop-blur">
-      <ul className="mx-auto max-w-5xl px-5 h-12 flex items-center gap-6 text-sm">
+    // Mobile-only sticky section nav. Use either this OR Header, not both.
+    <nav className="lg:hidden sticky top-14 z-40 border-b border-slate-800 bg-slate-900/85 backdrop-blur">
+      <ul className="mx-auto max-w-5xl px-4 sm:px-6 h-10 flex items-center gap-4 text-sm overflow-x-auto">
         {SECTIONS.map(({ id, label }) => {
           const isActive = active === id;
           return (
-            <li key={id}>
+            <li key={id} className="shrink-0">
               <a
                 href={`#${id}`}
                 className={[
                   "pb-1.5 transition-colors",
                   isActive
-                    ? "text-emerald-600 border-b-2 border-emerald-600"
-                    : "text-slate-500 hover:text-slate-900",
+                    ? "text-emerald-400 border-b-2 border-emerald-400"
+                    : "text-slate-400 supports-[hover]:hover:text-slate-200",
                 ].join(" ")}
               >
                 {label}

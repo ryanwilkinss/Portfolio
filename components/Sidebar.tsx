@@ -14,13 +14,10 @@ export default function Sidebar() {
   useEffect(() => {
     const opts: IntersectionObserverInit = {
       root: null,
-      // tune these so the highlight switches a bit before a section hits center
       rootMargin: "-35% 0px -55% 0px",
       threshold: [0, 0.25, 0.5, 0.75, 1],
     };
-
     const io = new IntersectionObserver((entries) => {
-      // pick the most visible section
       const top = entries
         .filter((e) => e.isIntersecting)
         .sort(
@@ -37,7 +34,8 @@ export default function Sidebar() {
   }, []);
 
   return (
-    <aside className="sticky top-0 h-dvh flex flex-col justify-between py-10">
+    // Desktop-only sticky sidebar
+    <aside className="hidden lg:flex sticky top-0 h-screen flex-col justify-between py-10">
       {/* hero block (name + tagline) */}
       <header>
         <h1 className="mt-20 text-5xl font-bold text-slate-100">
@@ -65,7 +63,6 @@ export default function Sidebar() {
                       : "text-slate-400 hover:text-slate-200",
                   ].join(" ")}
                 >
-                  {/* subtle left rule */}
                   <span
                     className={[
                       "h-px w-10 rounded",
@@ -80,7 +77,6 @@ export default function Sidebar() {
         </ul>
       </nav>
 
-      {/* social/footer (optional) */}
       <footer className="text-xs text-slate-500">
         © {new Date().getFullYear()} Your Name
       </footer>

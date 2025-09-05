@@ -1,3 +1,5 @@
+// app/page.tsx
+import Header from "@/components/Header";
 import Sidebar from "@/components/Sidebar";
 
 function Section({
@@ -10,25 +12,27 @@ function Section({
   children: React.ReactNode;
 }) {
   return (
-    <section id={id} className="scroll-mt-24 py-4">
+    <section id={id} className="scroll-mt-20 sm:scroll-mt-24 py-8 sm:py-12">
       <article
         className="
-          group
-          rounded-sm p-6
+          group rounded-md p-4 sm:p-6
           bg-transparent shadow-none
-          transition-colors transition-shadow duration-300
+          motion-safe:transition transition-colors transition-shadow duration-300
           hover:bg-slate-800/60 hover:shadow-lg
+          ml-35
         "
       >
-        <h2
-          className="
-            text-xl font-semibold text-white 
-            transition-colors
-            group-hover:text-emerald-300
-          "
-        >
-          {title}
-        </h2>
+        {id !== "experience" && (
+          <h2
+            className="
+              text-xl sm:text-2xl font-semibold text-white
+              motion-safe:transition transition-colors
+              supports-[hover]:group-hover:text-emerald-300
+            "
+          >
+            {title}
+          </h2>
+        )}
         <div className="mt-4">{children}</div>
       </article>
     </section>
@@ -43,7 +47,7 @@ function SimpleSection({
   children: React.ReactNode;
 }) {
   return (
-    <section id={id} className="scroll-mt-24 py-4">
+    <section id={id} className="scroll-mt-20 sm:scroll-mt-24 py-6 sm:py-8">
       {children}
     </section>
   );
@@ -51,25 +55,30 @@ function SimpleSection({
 
 export default function Page() {
   return (
-    <main className="mx-auto max-w-6xl px-6 lg:grid lg:grid-cols-[320px_minmax(0,1fr)] lg:gap-60">
-      {/* LEFT: sticky hero + nav */}
+    <main className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:grid lg:grid-cols-[320px_minmax(0,1fr)] lg:gap-20">
+      {/* Mobile top nav */}
+      <Header />
+
+      {/* LEFT: sticky hero + nav (desktop only) */}
       <div className="hidden lg:block">
         <Sidebar />
       </div>
 
-      {/* For small screens, show hero on top */}
-      <div className="lg:hidden pt-10">
-        <h1 className="text-3xl font-bold">Ryan Wilkins</h1>
-        <p className="mt-2">
-          Designing and developing digital experiences that are intuitive,
-          accessible, and built to last.
-        </p>
-      </div>
+      {/* RIGHT: content */}
+      <div className="pt-20 lg:pt-20">
+        {/* Mobile hero */}
+        <div className="lg:hidden pt-2">
+          <h1 className="text-[clamp(1.5rem,6vw,2rem)] font-bold leading-tight text-slate-100">
+            Ryan Wilkins
+          </h1>
+          <p className="mt-2 text-base sm:text-lg text-slate-300 max-w-prose">
+            Designing and developing digital experiences that are intuitive,
+            accessible, and built to last.
+          </p>
+        </div>
 
-      {/* RIGHT: scrollable content */}
-      <div className="pt-10 lg:pt-20">
         <SimpleSection id="about">
-          <div className="space-y-6 leading-relaxed max-w-3xl">
+          <div className="space-y-5 sm:space-y-6 leading-relaxed max-w-prose text-base mt-2 ml-35">
             <p>
               For the past five years, I’ve worked independently to design,
               build, and ship high-quality digital products across web, mobile,
@@ -102,42 +111,39 @@ export default function Page() {
 
         <Section id="experience" title="Experience">
           <ul className="space-y-6">
-            <li>
-              <div className="flex items-baseline justify-between gap-4">
-                <span className="font-medium text-white">
+            <li className="group">
+              <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 sm:gap-4">
+                <span className="font-medium text-white transition-colors duration-200 group-hover:text-emerald-300 bg-transparent">
                   Freelance Software Engineer
                 </span>
-                <span className="text-sm">2021 — Present</span>
+                <span className="text-sm text-slate-400">2021 — Present</span>
               </div>
-              <ul className="list-disc list-inside mt-2 space-y-2">
+
+              <ul className="list-disc list-inside mt-2 space-y-2 text-slate-200">
                 <li>
                   Built and shipped responsive, accessible web applications
                   using semantic HTML, modern CSS (Flexbox, Grid, animations),
-                  and Tailwind CSS for scalable, utility-first styling.
+                  and Tailwind CSS.
                 </li>
                 <li>
                   Developed production-level applications with
-                  JavaScript/TypeScript, React, and Next.js, optimizing
-                  performance and SEO for complex projects.
+                  JavaScript/TypeScript, React, and Next.js.
                 </li>
                 <li>
-                  Designed and implemented Node.js/Express backends, with REST &
-                  GraphQL APIs, secure authentication (JWT, OAuth), and database
-                  integrations (PostgreSQL, MongoDB).
+                  Designed and implemented Node.js/Express backends, REST &
+                  GraphQL APIs, JWT/OAuth authentication.
                 </li>
                 <li>
-                  Delivered CMS and e-commerce solutions using WordPress,
-                  Shopify, and headless CMS platforms (Contentful, Strapi,
-                  Sanity) for both SMB and enterprise clients.
+                  Delivered CMS/e-commerce with WordPress, Shopify, and headless
+                  CMSs (Contentful, Strapi, Sanity).
                 </li>
                 <li>
-                  Led initiatives to improve developer experience and
-                  accessibility, including CI/CD pipelines, mentoring,
-                  best-practice documentation, and company-wide accessibility
-                  standards.
+                  Led DX and accessibility initiatives — CI/CD pipelines,
+                  mentoring, best practices.
                 </li>
               </ul>
-              <div className="mt-3 flex flex-wrap gap-2">
+
+              <div className="mt-3 flex flex-wrap gap-1.5 sm:gap-2">
                 {[
                   "JavaScript",
                   "TypeScript",
@@ -148,38 +154,43 @@ export default function Page() {
                 ].map((tag) => (
                   <span
                     key={tag}
-                    className="px-2 py-1 text-xs rounded bg-emerald-400/10 text-emerald-300"
+                    className="px-2 py-1 text-xs rounded text-emerald-300 bg-emerald-400/10"
                   >
                     {tag}
                   </span>
                 ))}
               </div>
             </li>
-            {/* more <li>… */}
           </ul>
         </Section>
 
         <Section id="projects" title="Projects">
-          <div className="space-y-8">
+          <div className="space-y-6 sm:space-y-8 max-w-prose ml-35">
             <div>
-              <h3 className="font-medium text-lg">Project One</h3>
-              <p className="mt-2 text-sm text-slate-300">
+              <h3 className="font-medium text-[clamp(1rem,2.5vw,1.125rem)] text-slate-100">
+                Project One
+              </h3>
+              <p className="mt-2 text-sm sm:text-base text-slate-300">
                 Brief description and outcome.
               </p>
             </div>
 
             <div>
-              <h3 className="font-medium text-lg">Project Two</h3>
-              <p className="mt-2 text-sm text-slate-300">Another highlight.</p>
+              <h3 className="font-medium text-[clamp(1rem,2.5vw,1.125rem)] text-slate-100">
+                Project Two
+              </h3>
+              <p className="mt-2 text-sm sm:text-base text-slate-300">
+                Another highlight.
+              </p>
             </div>
           </div>
         </Section>
 
         <Section id="contact" title="Contact">
-          <p>
+          <p className="text-base sm:text-lg">
             I’m open to freelance work and collaborations.{" "}
             <a
-              className="text-emerald-400 underline hover:opacity-80"
+              className="inline-flex min-h-[44px] items-center text-emerald-400 underline focus:outline-none focus:ring-2 focus:ring-emerald-500/60 rounded-sm supports-[hover]:hover:opacity-80"
               href="mailto:ryanwilkins.dev@gmail.com"
             >
               ryanwilkins.dev@gmail.com
