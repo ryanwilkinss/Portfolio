@@ -6,10 +6,12 @@ function Section({
   id,
   title,
   children,
+  showTitle = true,
 }: {
   id: string;
   title: string;
   children: React.ReactNode;
+  showTitle?: boolean;
 }) {
   return (
     <section id={id} className="scroll-mt-20 sm:scroll-mt-24 py-8 sm:py-12">
@@ -22,7 +24,7 @@ function Section({
           ml-35
         "
       >
-        {id !== "experience" && (
+        {showTitle && (
           <h2
             className="
               text-xl sm:text-2xl font-semibold text-white
@@ -109,7 +111,7 @@ export default function Page() {
           </div>
         </SimpleSection>
 
-        <Section id="experience" title="Experience">
+        <Section id="experience" title="Experience" showTitle={false}>
           <ul className="space-y-6">
             <li className="group">
               <div className="grid grid-cols-1 sm:grid-cols-[120px_1fr] gap-6">
@@ -162,7 +164,7 @@ export default function Page() {
             </li>
           </ul>
         </Section>
-        <Section id="resume" title="Resume">
+        <Section id="resume" title="Resume" showTitle={false}>
           <a
             className="inline-flex min-h-[44px] items-center text-emerald-400 underline focus:outline-none focus:ring-2 focus:ring-emerald-500/60 rounded-sm supports-[hover]:hover:opacity-80"
             href="mailto:ryanwilkins.dev@gmail.com"
@@ -170,7 +172,7 @@ export default function Page() {
             ryanwilkins.dev@gmail.com
           </a>
         </Section>
-        <Section id="projects" title="Projects">
+        <Section id="projects" title="Projects" showTitle={false}>
           <div className="space-y-6 sm:space-y-8 max-w-prose ml-35">
             <div>
               <h3 className="font-medium text-[clamp(1rem,2.5vw,1.125rem)] text-slate-100">
@@ -192,7 +194,7 @@ export default function Page() {
           </div>
         </Section>
 
-        <Section id="contact" title="Contact">
+        <Section id="contact" title="Contact" showTitle={false}>
           <p className="text-base sm:text-lg">
             I’m open to freelance work and collaborations.{" "}
             <a
