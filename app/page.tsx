@@ -112,53 +112,48 @@ export default function Page() {
         <Section id="experience" title="Experience">
           <ul className="space-y-6">
             <li className="group">
-              <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 sm:gap-4">
-                <span className="font-medium text-white transition-colors duration-200 group-hover:text-emerald-300 bg-transparent">
-                  Freelance Software Engineer
-                </span>
-                <span className="text-sm text-slate-400">2021 — Present</span>
-              </div>
-
-              <ul className="list-disc list-inside mt-2 space-y-2 text-slate-200">
-                <li>
-                  Built and shipped responsive, accessible web applications
-                  using semantic HTML, modern CSS (Flexbox, Grid, animations),
-                  and Tailwind CSS.
-                </li>
-                <li>
-                  Developed production-level applications with
-                  JavaScript/TypeScript, React, and Next.js.
-                </li>
-                <li>
-                  Designed and implemented Node.js/Express backends, REST &
-                  GraphQL APIs, JWT/OAuth authentication.
-                </li>
-                <li>
-                  Delivered CMS/e-commerce with WordPress, Shopify, and headless
-                  CMSs (Contentful, Strapi, Sanity).
-                </li>
-                <li>
-                  Led DX and accessibility initiatives — CI/CD pipelines,
-                  mentoring, best practices.
-                </li>
-              </ul>
-
-              <div className="mt-3 flex flex-wrap gap-1.5 sm:gap-2">
-                {[
-                  "JavaScript",
-                  "TypeScript",
-                  "React",
-                  "Next.js",
-                  "Node.js",
-                  "PostgreSQL",
-                ].map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-2 py-1 text-xs rounded text-emerald-300 bg-emerald-400/10"
-                  >
-                    {tag}
+              <div className="grid grid-cols-1 sm:grid-cols-[120px_1fr] gap-6">
+                {/* Left column: Date */}
+                <div className="text-sm text-slate-400 sm:text-right">
+                  2021 — Present
+                </div>
+                {/* Right column: Title, description, tags */}
+                <div>
+                  <span className="font-medium text-white transition-colors duration-200 group-hover:text-emerald-300 bg-transparent block mb-2">
+                    Freelance Software Engineer
                   </span>
-                ))}
+                  <p className="mt-2 mb-3 text-sm">
+                    I built and shipped responsive, accessible web applications
+                    using semantic HTML, modern CSS (Flexbox, Grid, animations),
+                    and Tailwind CSS, while developing production-ready
+                    applications with JavaScript/TypeScript, React, and Next.js.
+                    I also designed and implemented Node.js/Express backends
+                    with REST and GraphQL APIs, including JWT/OAuth
+                    authentication. My experience extends to delivering CMS and
+                    e-commerce solutions with WordPress, Shopify, and headless
+                    CMS platforms such as Contentful, Strapi, and Sanity.
+                    Additionally, I led developer experience and accessibility
+                    initiatives, including CI/CD pipelines, mentoring, and
+                    establishing best practices.
+                  </p>
+                  <div className="mt-3 flex flex-wrap gap-1.5 sm:gap-2">
+                    {[
+                      "JavaScript",
+                      "TypeScript",
+                      "React",
+                      "Next.js",
+                      "Node.js",
+                      "PostgreSQL",
+                    ].map((tag) => (
+                      <span
+                        key={tag}
+                        className="px-2 py-1 text-xs rounded text-emerald-300 bg-emerald-400/10"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
               </div>
             </li>
           </ul>
