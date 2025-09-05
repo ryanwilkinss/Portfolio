@@ -162,7 +162,14 @@ export default function Page() {
             </li>
           </ul>
         </Section>
-
+        <Section id="resume" title="Resume">
+          <a
+            className="inline-flex min-h-[44px] items-center text-emerald-400 underline focus:outline-none focus:ring-2 focus:ring-emerald-500/60 rounded-sm supports-[hover]:hover:opacity-80"
+            href="mailto:ryanwilkins.dev@gmail.com"
+          >
+            ryanwilkins.dev@gmail.com
+          </a>
+        </Section>
         <Section id="projects" title="Projects">
           <div className="space-y-6 sm:space-y-8 max-w-prose ml-35">
             <div>
